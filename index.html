@@ -1,136 +1,294 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Demons SMP | Grand Launch</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
-    body {
-      background-color: #000;
-      color: #00ff88;
-      font-family: 'Press Start 2P', monospace;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-      text-align: center;
-      overflow: hidden;
-    }
-    h1 {
-      color: #00ff88;
-      font-size: 1.2rem;
-      animation: glow 2s infinite alternate;
-    }
-    @keyframes glow {
-      from { text-shadow: 0 0 5px #00ff88; }
-      to { text-shadow: 0 0 20px #00ffaa; }
-    }
-    .terminal {
-      background: rgba(0, 0, 0, 0.7);
-      border: 2px solid #00ff88;
-      padding: 20px;
-      border-radius: 10px;
-      width: 80%;
-      max-width: 700px;
-      margin-top: 20px;
-      box-shadow: 0 0 25px #00ff88;
-    }
-    .line {
-      margin: 10px 0;
-      text-align: left;
-    }
-    .cursor {
-      display: inline-block;
-      width: 10px;
-      background-color: #00ff88;
-      animation: blink 1s step-start infinite;
-    }
-    @keyframes blink {
-      50% { background-color: transparent; }
-    }
-    button {
-      margin-top: 15px;
-      background-color: #00ff88;
-      color: #000;
-      border: none;
-      padding: 8px 20px;
-      font-family: 'Press Start 2P', monospace;
-      cursor: pointer;
-      border-radius: 5px;
-      transition: 0.3s;
-    }
-    button:hover {
-      background-color: #00ffaa;
-      transform: scale(1.05);
-    }
-    footer {
-      margin-top: 20px;
-      font-size: 0.7rem;
-      opacity: 0.8;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demons SMP - Grand Launch Event</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background-color: #1a1a2e;
+            color: #fff;
+            font-family: 'Press Start 2P', cursive;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(28, 58, 173, 0.1) 0%, transparent 20%),
+                radial-gradient(circle at 90% 80%, rgba(139, 0, 0, 0.1) 0%, transparent 20%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow-x: hidden;
+        }
+        
+        .container {
+            max-width: 800px;
+            padding: 2rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            border: 4px solid #4a4a8a;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(106, 13, 173, 0.5);
+            margin: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8, #ff0000);
+            background-size: 400%;
+            z-index: -1;
+            filter: blur(20px);
+            opacity: 0.5;
+            animation: glowing 20s linear infinite;
+        }
+        
+        @keyframes glowing {
+            0% { background-position: 0 0; }
+            50% { background-position: 400% 0; }
+            100% { background-position: 0 0; }
+        }
+        
+        h1 {
+            color: #ff5555;
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            text-shadow: 0 0 10px rgba(255, 85, 85, 0.7);
+            line-height: 1.4;
+        }
+        
+        h2 {
+            color: #55aaff;
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 10px rgba(85, 170, 255, 0.7);
+        }
+        
+        .server-info {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 1.5rem;
+            border: 2px solid #5555ff;
+            border-radius: 5px;
+            margin: 1.5rem 0;
+            text-align: left;
+        }
+        
+        .server-info h3 {
+            color: #ffaa00;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+        
+        .ip-address {
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 1rem;
+            margin: 1rem 0;
+            border-left: 4px solid #ff5555;
+            font-family: monospace;
+            word-break: break-all;
+        }
+        
+        .timer-container {
+            margin: 2rem 0;
+            padding: 1.5rem;
+            background-color: rgba(0, 0, 0, 0.5);
+            border: 2px solid #55ff55;
+            border-radius: 5px;
+        }
+        
+        .timer {
+            font-size: 3rem;
+            color: #55ff55;
+            text-shadow: 0 0 10px rgba(85, 255, 85, 0.7);
+            margin: 1rem 0;
+            letter-spacing: 2px;
+        }
+        
+        .timer-label {
+            color: #ffaa00;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+        
+        .status {
+            font-size: 2rem;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            border-radius: 5px;
+        }
+        
+        .coming-soon {
+            color: #ff5555;
+            background-color: rgba(255, 85, 85, 0.1);
+            border: 2px solid #ff5555;
+            animation: pulse 2s infinite;
+        }
+        
+        .launched {
+            color: #55ff55;
+            background-color: rgba(85, 255, 85, 0.1);
+            border: 2px solid #55ff55;
+        }
+        
+        .credits {
+            margin-top: 2rem;
+            color: #aaa;
+            font-size: 0.8rem;
+            line-height: 1.5;
+        }
+        
+        .minecraft-btn {
+            background-color: #727272;
+            color: white;
+            border: 2px solid #555;
+            padding: 10px 20px;
+            font-family: 'Press Start 2P', cursive;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+            box-shadow: 4px 4px 0 #333;
+        }
+        
+        .minecraft-btn:hover {
+            background-color: #8a8a8a;
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0 #333;
+        }
+        
+        .minecraft-btn:active {
+            transform: translate(4px, 4px);
+            box-shadow: 0 0 0 #333;
+        }
+        
+        @keyframes pulse {
+            0% { opacity: 0.7; }
+            50% { opacity: 1; }
+            100% { opacity: 0.7; }
+        }
+        
+        .pixel-art {
+            font-size: 0.6rem;
+            line-height: 0.6rem;
+            color: #55ff55;
+            margin: 1rem 0;
+            opacity: 0.7;
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+            
+            h2 {
+                font-size: 1.2rem;
+            }
+            
+            .timer {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 1rem;
+                margin: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
+    <div class="container">
+        <h1>DEMONS SMP</h1>
+        <h2>GRAND LAUNCH EVENT</h2>
+        
+        <div class="timer-container">
+            <div class="timer-label">SERVER LAUNCHES IN:</div>
+            <div class="timer" id="countdown">00:00:00:00</div>
+            <div class="status coming-soon" id="status">COMING SOON</div>
+        </div>
+        
+        <div class="server-info" id="server-info" style="display: none;">
+            <h3>SERVER IS NOW LIVE!</h3>
+            <p>Join now using one of these IPs:</p>
+            
+            <div class="ip-address">
+                <strong>Primary IP:</strong><br>
+                DemonsSMP.enderman.cloud
+            </div>
+            
+            <div class="ip-address">
+                <strong>Alternative IPs:</strong><br>
+                mc1792165.fmcs.cloud<br>
+                pelican.fi.freemcserver.net:33463<br>
+                65.21.82.29:33463
+            </div>
+            
+            <button class="minecraft-btn" onclick="copyIP('DemonsSMP.enderman.cloud')">Copy Primary IP</button>
+        </div>
+        
+        <div class="credits">
+            <p>Server created by: <strong>TheLegendary</strong></p>
+            <p>Founded by admin operator owner: <strong>WarNightOG</strong></p>
+        </div>
+        
+        <div class="pixel-art">
+            ░█▀▀░█░█░█▀█░█▀▀░▀█▀░█▀▀░█▀▄<br>
+            ░█▀▀░▄▀▄░█▀▀░█▀▀░░█░░█▀▀░█▀▄<br>
+            ░▀░░░▀░▀░▀░░░▀▀▀░░▀░░▀▀▀░▀░▀
+        </div>
+    </div>
 
-  <h1>💥 Demons SMP - Grand Launch 💥</h1>
-
-  <div class="terminal" id="terminal">
-    <div class="line">> Initializing server info<span class="cursor"></span></div>
-  </div>
-
-  <button onclick="copyIP()">📋 Copy Main IP</button>
-
-  <footer>
-    Created by <span style="color:#00ffaa;">TheLegendary</span> | Founder, Admin, Operator, Owner: <span style="color:#ff0088;">WarNightOG</span>
-  </footer>
-
-  <script>
-    const lines = [
-      "> Connecting to Demons SMP...",
-      "> Main IP: DemonsSMP.enderman.cloud",
-      "> Alternative IPs:",
-      ">  - mc1792165.fmcs.cloud",
-      ">  - pelican.fi.freemcserver.net:33463",
-      ">  - 65.21.82.29:33463",
-      "> Server Status: ONLINE ✅",
-      "> Launch Event: NOW LIVE!",
-      "> Join and Conquer the Realm ⚔️"
-    ];
-
-    let index = 0;
-    const terminal = document.getElementById('terminal');
-
-    function typeLine() {
-      if (index < lines.length) {
-        const line = document.createElement('div');
-        line.classList.add('line');
-        let text = '';
-        let i = 0;
-        const interval = setInterval(() => {
-          text += lines[index][i];
-          line.textContent = text;
-          i++;
-          if (i >= lines[index].length) {
-            clearInterval(interval);
-            terminal.appendChild(line);
-            index++;
-            setTimeout(typeLine, 400);
-          }
-        }, 40);
-      }
-    }
-
-    setTimeout(() => {
-      terminal.innerHTML = '';
-      typeLine();
-    }, 1000);
-
-    function copyIP() {
-      navigator.clipboard.writeText("DemonsSMP.enderman.cloud");
-      alert("Copied main IP: DemonsSMP.enderman.cloud");
-    }
-  </script>
+    <script>
+        // Set your launch date and time here (YYYY, MM-1, DD, HH, MM, SS)
+        // Example: July 15, 2023 18:00:00
+        const launchDate = new Date(2023, 6, 15, 18, 0, 0).getTime();
+        
+        // Update the countdown every 1 second
+        const countdownFunction = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = launchDate - now;
+            
+            // If the countdown is over
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById("countdown").innerHTML = "00:00:00:00";
+                document.getElementById("status").innerHTML = "SERVER IS LIVE!";
+                document.getElementById("status").className = "status launched";
+                document.getElementById("server-info").style.display = "block";
+                return;
+            }
+            
+            // Calculate days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+            
+            // Display the result
+            document.getElementById("countdown").innerHTML = 
+                `${days.toString().padStart(2, '0')}:${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }, 1000);
+        
+        // Function to copy IP to clipboard
+        function copyIP(ip) {
+            navigator.clipboard.writeText(ip).then(function() {
+                alert('IP copied to clipboard: ' + ip);
+            }, function(err) {
+                console.error('Could not copy text: ', err);
+            });
+        }
+    </script>
 </body>
 </html>
