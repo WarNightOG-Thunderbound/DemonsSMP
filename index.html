@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Demons SMP | Grand Launch</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+    body {
+      background-color: #000;
+      color: #00ff88;
+      font-family: 'Press Start 2P', monospace;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+      overflow: hidden;
+    }
+    h1 {
+      color: #00ff88;
+      font-size: 1.2rem;
+      animation: glow 2s infinite alternate;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 5px #00ff88; }
+      to { text-shadow: 0 0 20px #00ffaa; }
+    }
+    .terminal {
+      background: rgba(0, 0, 0, 0.7);
+      border: 2px solid #00ff88;
+      padding: 20px;
+      border-radius: 10px;
+      width: 80%;
+      max-width: 700px;
+      margin-top: 20px;
+      box-shadow: 0 0 25px #00ff88;
+    }
+    .line {
+      margin: 10px 0;
+      text-align: left;
+    }
+    .cursor {
+      display: inline-block;
+      width: 10px;
+      background-color: #00ff88;
+      animation: blink 1s step-start infinite;
+    }
+    @keyframes blink {
+      50% { background-color: transparent; }
+    }
+    button {
+      margin-top: 15px;
+      background-color: #00ff88;
+      color: #000;
+      border: none;
+      padding: 8px 20px;
+      font-family: 'Press Start 2P', monospace;
+      cursor: pointer;
+      border-radius: 5px;
+      transition: 0.3s;
+    }
+    button:hover {
+      background-color: #00ffaa;
+      transform: scale(1.05);
+    }
+    footer {
+      margin-top: 20px;
+      font-size: 0.7rem;
+      opacity: 0.8;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>💥 Demons SMP - Grand Launch 💥</h1>
+
+  <div class="terminal" id="terminal">
+    <div class="line">> Initializing server info<span class="cursor"></span></div>
+  </div>
+
+  <button onclick="copyIP()">📋 Copy Main IP</button>
+
+  <footer>
+    Created by <span style="color:#00ffaa;">TheLegendary</span> | Founder, Admin, Operator, Owner: <span style="color:#ff0088;">WarNightOG</span>
+  </footer>
+
+  <script>
+    const lines = [
+      "> Connecting to Demons SMP...",
+      "> Main IP: DemonsSMP.enderman.cloud",
+      "> Alternative IPs:",
+      ">  - mc1792165.fmcs.cloud",
+      ">  - pelican.fi.freemcserver.net:33463",
+      ">  - 65.21.82.29:33463",
+      "> Server Status: ONLINE ✅",
+      "> Launch Event: NOW LIVE!",
+      "> Join and Conquer the Realm ⚔️"
+    ];
+
+    let index = 0;
+    const terminal = document.getElementById('terminal');
+
+    function typeLine() {
+      if (index < lines.length) {
+        const line = document.createElement('div');
+        line.classList.add('line');
+        let text = '';
+        let i = 0;
+        const interval = setInterval(() => {
+          text += lines[index][i];
+          line.textContent = text;
+          i++;
+          if (i >= lines[index].length) {
+            clearInterval(interval);
+            terminal.appendChild(line);
+            index++;
+            setTimeout(typeLine, 400);
+          }
+        }, 40);
+      }
+    }
+
+    setTimeout(() => {
+      terminal.innerHTML = '';
+      typeLine();
+    }, 1000);
+
+    function copyIP() {
+      navigator.clipboard.writeText("DemonsSMP.enderman.cloud");
+      alert("Copied main IP: DemonsSMP.enderman.cloud");
+    }
+  </script>
+</body>
+</html>
